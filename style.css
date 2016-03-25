@@ -1,0 +1,541 @@
+@font-face {
+  font-family: openSansRegular;
+  src: url(fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+  font-family: openSansBold;
+  src: url(fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+  font-family: openSansLight;
+  src: url(fonts/OpenSans-Light.ttf);
+}
+@font-face {
+  font-family: openSansSemibold;
+  src: url(fonts/OpenSans-Semibold.ttf);
+}
+@font-face {
+  font-family: openSansExtrabold;
+  src: url(fonts/OpenSans-ExtraBold.ttf);
+}
+
+/*header*/
+.pageStyle {
+  font-family: openSansRegular, Arial, Helvetica, sans-serif;
+  margin-left: 160px;
+  margin-right: 160px;
+  background-color: #eeeeee;
+  width: auto;
+}
+.header {
+  background-color: #006cba;
+  border-radius: 15px;
+  color: #fff;
+  /*width: 88%;*/
+  margin-right:-200px;
+}
+.header .content {
+  margin-left: 32px;
+  padding-top: 33px;
+}
+.header .content h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.header .content h1 {
+  font-size: 25px;
+  font-family: openSansBold;
+  margin-top: -8px;
+  margin-bottom: 40px;
+}
+.rectangles {
+  display: block;
+}
+.header .content .rectangleLeft {
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thin;
+  padding: 25px;
+  margin-right: 25px;
+  float: left;
+  width: 58%;
+  font-size: 14px;
+  letter-spacing: 2x;
+  text-transform: uppercase;
+}
+.header .content .rectangleRight {
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thin;;
+  padding: 25px;
+  float: left;
+  font-size: 12px;
+  width: 14%;
+  letter-spacing: 12x;
+  text-transform: uppercase;
+  text-align: center;
+}
+.information {
+  clear: both;
+  padding-top:30px;
+  padding-bottom: 30px;
+  font-size: 12px;
+}
+.information .fa-exclamation {
+  float: left;
+  margin-right: 10px;
+}
+.information .mark {
+  float: left;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.header .paragraph {
+  clear:both;
+  font-size: 12px;
+  color: #b8cce5;
+  padding-bottom: 35px;
+  width: 743px;
+}
+
+/*body buttons section*/
+.buttonsSection {
+  margin-top: 65px;
+}
+.buttons {
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #fff;
+  border-color: #fff;
+  margin-left: 10px;
+}
+.favourite {
+  color: #c01d2a;;
+  width: 147px;
+  height: 38px;
+  float: left;
+  margin-left:0px;
+}
+.favourite .fa-heart-o {
+  padding-top: 10px;
+  float: left;
+  padding-right: 20px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.topText {
+  font-size: 8px;
+  padding-top: 6px;
+  text-transform: uppercase;
+}
+.bottomText {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.sort {
+  width: 233px;
+  height: 38px;
+  float: right;
+}
+.display {
+  width: 130px;
+  height: 38px;
+  float: right;
+}
+.viewTiles {
+  width: 40px;
+  height: 38px;
+  float: right;
+  background-image: url("/images/widok_kafelki.png")
+}
+.viewList {
+  width: 40px;
+  height: 38px;
+  float: right;
+  background-image: url("/images/widok_lista.png");
+}
+
+/*body elements*/
+
+.elements {
+  clear: both;
+  padding-top: 18px;
+}
+.tile {
+  width: 335px;
+  height: 425px;
+  background-color: #fff;
+  border-radius: 15px;
+  display: inline-block;
+  margin-right: 28px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.thumbTile {
+  width: 335px;
+  height: 208px;
+  background-image: url("/images/miniatura_kafelki.png")
+}
+.text {
+  text-transform: uppercase;
+}
+.tile .text {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.tile .paragraph {
+  font-family: openSansLight;
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.date {
+  font-family: openSansSemibold;
+  font-size: 11px;
+  float: left;
+}
+.numberOfDisplays {
+  font-size: 11px;
+  float: right;
+}
+.blueLine {
+  float: left;
+}
+greyLine {
+  float: right;
+}
+.like {
+  float: left;
+  font-size: 10px;
+  padding-left:20px;
+  padding-right:10px;
+}
+.dislike {
+  float: left;
+  font-size: 10px;
+  padding-bottom: 24px;
+}
+.button {
+  background-color: #006cba;
+  border-radius: 15px;
+  color: #fff;
+  clear:both;
+  width: 192px;
+  font-family: openSansExtrabold;
+  font-size: 10px;
+  text-align: center;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  margin:auto;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.tiles .tile .fa {
+  position: absolute;
+  bottom: 37px;
+  right: 35px;
+  color: #979797;
+}
+.paragraph {
+  text-transform: none;
+}
+.pagination {
+  text-align: center;
+}
+.paginationElement {
+  width: 40px;
+  display: inline-block;
+  border: 0px;
+  text-align: center;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  font-size: 12px;
+}
+.footer {
+  font-size: 12px;
+  margin-top: 57px;
+}
+.footerLine {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+.clearLibrary {
+  margin-top:18px;
+  margin-left: 20px;
+  color: #979797;
+}
+.footer .logo {
+  /*padding:73px 0px;*/
+  margin-top: 70px;
+  margin-bottom: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 120px;
+  height: 63px;
+  background-image: url("/images/logo.png");
+  background-repeat: no-repeat;
+}
+.show {
+  display:block;
+}
+.hide {
+  display: none;
+}
+.listContentLeft {
+  float: left
+}
+.listElement {
+  background-color: #fff;
+  border-radius: 15px;
+  display: block;
+  height: 130px;
+  font-family: openSansLight;
+  margin-bottom: 22px;
+  /*margin-top: 50px;*/
+}
+.listElement .thumbList {
+  float: left;
+  margin-right: 34px;
+  width: 130px;
+  height: 130px;
+  background-image: url("/images/miniatura_lista.png")
+}
+.listElement .paragraph {
+  padding-top: 22px;
+  font-size: 18px;
+  padding-bottom: 16px;
+}
+
+.listElement .numberOfDisplaysList {
+  float: left;
+  font-size: 11px;
+  padding-left: 40px;
+
+}
+.listElement .blueLineList {
+  float: left;
+  margin-right: 0px;
+}
+.listElement .greyLineList {
+  float: left;
+}
+.margin {
+  padding-left:20px;
+}
+.likeList {
+  float: left;
+  font-size: 10px;
+  padding-right:10px;
+}
+.dislikeList {
+  float: left;
+  font-size: 10px;
+}
+.listContentRight {
+  float:left;
+  padding-left: 76px;
+  width: 288px;
+}
+.listContentRight .fa {
+  float: left;
+  padding-top: 57px;
+  color: #979797;
+}
+.buttonList {
+  background-color: #006cba;
+  border-radius: 15px;
+  color: #fff;
+  width: 192px;
+  font-family: openSansExtrabold;
+  font-size: 10px;
+  text-align: center;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  float: left;
+  margin-top: 46px;
+  margin-left:27px;
+  margin-right: 27px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@media (min-width: 481px) and (max-width:1024px) {
+  .pageStyle {
+    margin-left: 180px;
+    margin-right: 180px;
+  }
+  .header {
+    margin-left: -60px;
+  }
+  .elements {
+    padding-top: 1px;
+  }
+  .thumbList {
+    margin-left: 270px;
+    margin-top: -30px;
+  }
+  .listElement {
+    margin-top: 55px;
+    height: 287px;
+    padding-bottom: 10px;
+    .padding-top: 18px;
+  }
+  .paragraph {
+    text-align: center;
+  }
+  .listContentLeft {
+    margin-left: 105px;
+  }
+  .date {
+    margin-left: 90px;
+  }
+  .blueLineList {
+    margin-left: 35px;
+  }
+  .likeList {
+    margin-left: 45px;
+  }
+  .listContentRight {
+    margin-left: 140px;
+  }
+  .buttonList {
+    margin-top: 20px;
+  }
+  .listContentRight .fa {
+    padding-top: 30px;
+  }
+  .header .content .rectangleLeft {
+    width: 800px;
+  }
+  .header .content .rectangleRight {
+    margin-top: 10px;
+    margin-right: 40px;
+    float: right;
+  }
+  .information {
+    float: left;
+    clear: none;
+  }
+  .header .paragraph {
+    width: 600px;
+    text-align: left;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .pageStyle {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 480px;
+  }
+  .header {
+    background-color: #006cba;
+    color: #fff;
+    border-radius: 0px;
+    margin: 0px;
+  }
+  .header .content .rectangleLeft {
+    width: 78%;
+    padding:25px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .header .content .rectangleRight {
+    width: 78%;
+    padding:25px;
+    text-align: center;
+
+  }
+  .header .paragraph {
+    margin-top: 45px;
+    width: 430px;
+  }
+  .display {
+    width: 330px;
+    float: left;
+    margin-left: 75px;
+    margin-bottom: 10px;
+  }
+  .sort {
+    width: 330px;
+    float: left;
+    margin-left: 75px;
+  }
+  .favourite {
+    margin-left: 75px;
+    margin-bottom: 10px;
+  }
+  .buttonsSection {
+    margin-top: 25px;
+  }
+  .viewList {
+    margin-right: 75px;
+  }
+  .buttons {
+    border-style: solid;
+
+  }
+  .tile {
+    margin-left: 75px;
+    position: relative;
+  }
+  .contentMargin {
+    padding-left: 10px;
+  }
+  .tile .bin {
+    position: absolute;
+    bottom: 40px;
+    right: 36px;
+  }
+  .dislike {
+    padding-bottom: 20px;
+  }
+  .clearLibrary {
+    text-align: center;
+  }
+  .listElement {
+    height: 317px;
+    margin-top: 50px;
+  }
+  .thumbList {
+    margin-left: 175px;
+    margin-top: -30px;
+  }
+
+  .listElement .paragraph {
+    width: 357px;
+    margin-left: 66px;
+    text-align: center;
+  }
+  .listElement .date {
+    margin-left: 100px;
+  }
+  .blueLineList {
+    margin-left: 55px;
+  }
+  .likeList {
+    margin-left: 57px;
+  }
+  .listContentRight {
+    margin-top: 20px;
+
+  }
+  .listContentRight img {
+    padding-top: 0px;
+  }
+  .buttonList {
+      margin-top: -10px;
+  }
+  .listContentRight .fa {
+    padding-top: 0px;
+  }
+
+}
