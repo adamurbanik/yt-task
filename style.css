@@ -413,8 +413,8 @@ greyLine {
     position: absolute;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, 250%);
-    /*margin-top: 200px;*/
+    transform: translate(-50%);
+    margin-top: 200px;
     padding-left: 0px;
   }
   .buttonList {
