@@ -298,7 +298,7 @@ greyLine {
   height: 130px;
   font-family: openSansLight;
   margin-bottom: 22px;
-  /*margin-top: 50px;*/
+
 }
 .listElement .thumbList {
   float: left;
@@ -366,7 +366,7 @@ greyLine {
   letter-spacing: 2px;
 }
 
-@media (min-width: 481px) and (max-width:1024px) {
+@media (min-width: 481px) and (max-width:1320px) {
   .pageStyle {
     margin-left: 180px;
     margin-right: 180px;
@@ -375,26 +375,33 @@ greyLine {
     margin-left: -60px;
   }
   .elements {
-    padding-top: 1px;
-  }
-  .thumbList {
-    margin-left: 270px;
-    margin-top: -30px;
+    padding-top: 18px;
   }
   .listElement {
     margin-top: 55px;
     height: 287px;
     padding-bottom: 10px;
-    .padding-top: 18px;
+    padding-top: 18px;
+    position: relative;
+  }
+  .thumbList {
+    position: absolute;
+    left:50%;
+    margin-right: -50%;
+    transform: translate(-50%, -35%);
+  }
+  .listContentLeft {
+    position: absolute;
+    left:50%;
+    margin-right: -50%;
+    transform: translate(-50%, 70%);
+
   }
   .paragraph {
     text-align: center;
   }
-  .listContentLeft {
-    margin-left: 105px;
-  }
-  .date {
-    margin-left: 90px;
+  .listElement .listContentLeft .date {
+    margin-left: 60px;
   }
   .blueLineList {
     margin-left: 35px;
@@ -403,7 +410,12 @@ greyLine {
     margin-left: 45px;
   }
   .listContentRight {
-    margin-left: 140px;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 250%);
+    /*margin-top: 200px;*/
+    padding-left: 0px;
   }
   .buttonList {
     margin-top: 20px;
