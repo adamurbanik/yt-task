@@ -1,22 +1,22 @@
 @font-face {
   font-family: openSansRegular;
-  src: url(fonts/OpenSans-Regular.ttf);
+  src: url(/fonts/OpenSans-Regular.ttf);
 }
 @font-face {
   font-family: openSansBold;
-  src: url(fonts/OpenSans-Bold.ttf);
+  src: url(/fonts/OpenSans-Bold.ttf);
 }
 @font-face {
   font-family: openSansLight;
-  src: url(fonts/OpenSans-Light.ttf);
+  src: url(/fonts/OpenSans-Light.ttf);
 }
 @font-face {
   font-family: openSansSemibold;
-  src: url(fonts/OpenSans-Semibold.ttf);
+  src: url(/fonts/OpenSans-Semibold.ttf);
 }
 @font-face {
   font-family: openSansExtrabold;
-  src: url(fonts/OpenSans-ExtraBold.ttf);
+  src: url(/fonts/OpenSans-ExtraBold.ttf);
 }
 
 /*header*/

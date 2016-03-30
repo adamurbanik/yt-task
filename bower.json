@@ -1,0 +1,25 @@
+{
+  "name": "yttasknewrepo",
+  "description": "",
+  "main": "./app/index.html",
+  "authors": [
+    "Adam Urbanik"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular-animate": "^1.5.3",
+    "angular-ui-router": "^0.2.18",
+    "angular-bootstrap": "^1.2.5"
+  }
+}
