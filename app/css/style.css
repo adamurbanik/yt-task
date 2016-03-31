@@ -31,8 +31,9 @@
   background-color: #006cba;
   border-radius: 15px;
   color: #fff;
-  /*width: 88%;*/
-  margin-right:-200px;
+  margin-right:-160px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 .header .content {
   margin-left: 32px;
@@ -504,6 +505,7 @@ greyLine {
   }
   .header {
     margin-left: -60px;
+    margin-right: -180px;
   }
   .elements {
     padding-top: 18px;
