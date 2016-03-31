@@ -6,7 +6,6 @@
     VideoModalController.$inject = ['$scope'];
 
     function VideoModalController($scope) {
-      this.isSmall = false;
       this.$scope = $scope;
       this.startWatcher();
     }
@@ -24,9 +23,6 @@
             }
             self.showModal();
           });
-      },
-      changeSize: function changeSize() {
-        this.isSmall = !this.isSmall;
       },
       showModal: function showModal() {
         this.element.modal('show');
