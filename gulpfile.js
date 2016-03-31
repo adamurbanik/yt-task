@@ -75,7 +75,7 @@ gulp.task('images', function () {
 gulp.task('watch', function () {
   gulp.watch(['./app/**/*.html'], ['html']);
   gulp.watch(['./app/**/*.js'], ['js']);
-  gulp.watch(['./app/**/*.less'], ['less']);
+  gulp.watch(['./app/**/*.css'], ['css']);
 });
 
 // gulp.task('default', ['html', 'fonts', 'css-vendor', 'js', 'bower', 'less', 'connect', 'watch']);

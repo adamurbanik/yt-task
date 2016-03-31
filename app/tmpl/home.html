@@ -3,8 +3,14 @@
     <h2>DODAJ</h2>
     <h1>NOWY FILM DO BAZY</h1>
     <div class="rectangles">
-      <div class="rectangleLeft">Podaj adres filmu lub jego identifikator</div>
-      <div class="rectangleRight">Dodaj do bazy</div>
+      <form role="form" name="pasteInput" ng-submit="vm.processInputForm()">
+        <div class="rectangleLeft">
+          <input type="text" ng-model="vm.movieLink" name="movieLink" id="movieLink" placeholder="Podaj adres filmu lub jego identifikator"
+          required>
+        </div>
+        <div class="rectangleRight"><button ng-disabled="!(pasteInput.movieLink.$valid)" type="submit" class="btn btn-default">Dodaj do bazy</button></div>
+        <!--<button ng-disabled="!(pasteInput.movieLink.$valid)" type="submit" class="btn btn-default rectangleRight">Submit</button>-->
+      </form>
     </div>
     <div class="information">
       <div class="fa fa-exclamation fa-2x"></div>
@@ -16,229 +22,104 @@
 </div>
 <div class="pageBody">
   <div class="buttonsSection">
-    <div class="favourite buttons">
-      <div class="serduszko"></div>
-      <div class="fa fa-heart-o"></div>
-      <div class="topText">Wyświetl</div>
-      <div class="bottomText">Tylko ulubione</div>
+
+    <div class="favourite btn-group">
+      <button type="button" class="btn btn-default" ng-click="vm.toggleFavourite()">
+        <div class="fa fa-heart-o"></div>
+        <div class="topText">Wyświetl</div>
+        <div class="bottomText">Tylko ulubione</div>
+      </button>
     </div>
-    <div id="btnList" class="viewList buttons">
+    <div id="btnList" class="viewList">
+      <button type="button" class="btn btn-default" ng-click="vm.showList()">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true" ></span>
+      </button>
     </div>
-    <div id="btnTiles" class="viewTiles buttons">
+    <div id="btnTiles" class="viewTiles ">
+      <button type="button" class="btn btn-default" ng-click="vm.showTiles()">
+        <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+      </button>
     </div>
-    <div class="display buttons">
-      <div class="topText contentMargin">Wyświetl</div>
-      <div class="bottomText contentMargin">50 na stronę</div>
+    <div class="btn-group display">
+      <button type="button" class="btn btn-default">
+        <div class="topText contentMargin">Wyświetl</div>
+        <div class="bottomText contentMargin">{{vm.itemsPerPage}} na stronę</div>
+      </button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-click="vm.setItemsPerPage(2)"><a href="#">2</a></li>
+        <li ng-click="vm.setItemsPerPage(4)"><a href="#">4</a></li>
+        <li ng-click="vm.setItemsPerPage(8)"><a href="#">8</a></li>
+        <li ng-click="vm.setItemsPerPage(10)"><a href="#">10</a></li>
+      </ul>
     </div>
-    <div class="sort buttons">
-      <div class="topText contentMargin">Sortuj</div>
-      <div class="bottomText contentMargin">Od najstarszych do najnowszych</div>
+    <div class="btn-group sort">
+      <button type="button" class="btn btn-default" ng-click="vm.toggleSort()">
+        <div class="topText contentMargin">Sortuj</div>
+        <div class="bottomText contentMargin">Od najstarszych do najnowszych</div>
+      </button>
     </div>
   </div>
   <div class="elements">
-    <div id="tiles" class="tiles hide">
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyświetleń: 14 561</div>
+    <div id="tiles" class="tiles " ng-hide="vm.isList">
+      <div class="tile" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.libraryService.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+  | orderBy: 'dateNumber':vm.sortDirection ">
+        <div class="thumbTile">
+          <img ng-src="{{movie.thumb}} " width="335px" alt="... ">
+        </div>
+        <div class="paragraph text">{{movie.title}}</div>
+        <div class="date text">Data dodania: {{movie.date}}</div>
+        <div class="numberOfDisplays text">Wyświetleń: {{movie.viewingCount}}</div>
         <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
         <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
-      </div>
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyswietleń: 14 561</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
-      </div>
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyswietleń: 14 561</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
-      </div>
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyswietleń: 14 561</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
-      </div>
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyswietleń: 14 561</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
-      </div>
-      <div class="tile">
-        <div class="thumbTile"></div>
-        <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-        <div class="date text">Data dodania: 21-09-15</div>
-        <div class="numberOfDisplays text">Wyswietleń: 14 561</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png />2524</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />240</div>
-        <div class="button">Oglądaj</div>
-        <div class="fa fa-trash-o"></div>
+        <div class="like"><img src=images/ikona_lubie.png /> {{movie.favourCount}}</div>
+        <div class="dislike"><img src=images/ikona_nielubie.png />{{movie.dislikeCount}}</div>
+        <br />
+        <div type="button " class="buttonTile btn btn-primary " ng-click="vm.playVideo(movie) ">Oglądaj</div>
+        <div class="fa fa-trash-o" ng-click="vm.deleteMovie(movie.videoID) "></div>
       </div>
     </div>
-    <div id="list" class="list show">
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyswietleń: 14 561</div>
-          <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
-          <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
+    <div id="list" class="list" ng-show="vm.isList ">
+      <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.libraryService.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+  | orderBy: 'dateNumber':vm.sortDirection ">
+        <div class="thumbList">
+          <img ng-src="{{movie.thumb}} " height="130px" " alt="... ">
         </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
-        </div>
-      </div>
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyswietleń: 14 561</div>
+        <div class="listContentLeft ">
+          <div class="paragraph text ">{{movie.title}}</div>
+          <div class="date text ">Data dodania: {{movie.date}}</div>
+          <div class="numberOfDisplaysList text ">Wyświetleń: {{movie.viewingCount}}</div>
           <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
+          <div class="blueLineList "><img src="images/niebieska_kreska.png " /></div>
+          <div class="greyLineList "><img src="images/szara_kreska.png " /></div>
           <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
+          <div class="likeList "><img src=images/ikona_lubie.png /> {{movie.favourCount}}</div>
+          <div class="dislikeList "><img src=images/ikona_nielubie.png /> {{movie.dislikeCount}}</div>
         </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
-        </div>
-      </div>
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyswietleń: 14 561</div>
-          <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
-          <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
-        </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
-        </div>
-      </div>
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyswietleń: 14 561</div>
-          <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
-          <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
-        </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
-        </div>
-      </div>
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyswietleń: 14 561</div>
-          <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
-          <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
-        </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
-        </div>
-      </div>
-      <div class="listElement">
-        <div class="thumbList"></div>
-        <div class="listContentLeft">
-          <div class="paragraph text">Lorem ipsum dolor sit amet, consectetur adipiscing elit!</div>
-          <div class="date text">Data dodania: 21-09-15</div>
-          <div class="numberOfDisplaysList text">Wyświetleń: 14 561</div>
-          <br />
-          <div class="blueLineList"><img src="images/niebieska_kreska.png" /></div>
-          <div class="greyLineList"><img src="images/szara_kreska.png" /></div>
-          <br />
-          <div class="likeList"><img src=images/ikona_lubie.png /> 2524</div>
-          <div class="dislikeList"><img src=images/ikona_nielubie.png /> 240</div>
-        </div>
-        <div class="listContentRight">
-          <div class="fa fa-heart-o"></div>
-          <div class="buttonList">Oglądaj</div>
-          <div class="fa fa-trash-o"></div>
+        <div class="listContentRight ">
+          <div class="fa fa-heart-o " ng-click="vm.addFavourite(movie.videoID) "></div>
+          <div type="button " class="buttonList btn btn-primary " ng-click="vm.playVideo(movie) ">Oglądaj</div>
+          <div class="fa fa-trash-o " ng-click="vm.deleteMovie(movie.videoID) "></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pagination">
-    <div class="paginationElement buttons">
-      <</div>
-        <div class="paginationElement buttons">1</div>
-        <div class="paginationElement buttons">2</div>
-        <div class="paginationElement buttons">3</div>
-        <div class="paginationElement buttons">></div>
+  <div class="myPagination ">
+    <uib-pagination total-items="vm.getLibraryLength(vm.showFavourite) " ng-model="vm.currentPage " max-size="vm.maxSize
+          " class="pagination-sm " boundary-links="false " next-text=">" previous-text="
+          < "
+      rotate="false " num-pages="numPages " items-per-page="vm.itemsPerPage "></uib-pagination> 
     </div>
-    <div class="footer">
-      <div class="footerLine"></div>
-      <div class="clearLibrary">WYCZYŚĆ BAZĘ FILMOW • WGRAJ BAZĘ TESTOWĄ</div>
-      <div class="logo"></div>
+    <div class="footer ">
+      <div class="footerLine "></div>
+      <div class="clearLibrary ">WYCZYŚĆ BAZĘ FILMOW • WGRAJ BAZĘ TESTOWĄ</div>
+      <div class="logo "></div>
     </div>
   </div>
+  <app-video-modal id="videoModal " title="Video " visible="vm.showModal " url="vm.url " type="vm.type ">
+  </app-video-modal>
+  
 </div>

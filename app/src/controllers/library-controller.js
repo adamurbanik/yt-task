@@ -8,7 +8,7 @@
     function LibraryController(libraryService, $location, videoService, config) {
 
       this.vm = {};
-
+      
       this.videoService = videoService;
       this.url = null;
       this.type = null;
@@ -22,9 +22,26 @@
       this.movieLink = "";
       this.sortDirection = true; // true = ASC, false = DESC
       this.showModal = null;
+      this.showFavourite = false;
+      this.isList = false;
+
+      console.log(this.libraryService.videos);
+      
 
 // some commments added
     }
+    
+    LibraryController.prototype.toggleFavourite = function toggleFavourite() {
+      this.showFavourite = !this.showFavourite;
+    };
+    
+    LibraryController.prototype.showList = function toggleList() {
+      this.isList = true;
+    };
+    
+    LibraryController.prototype.showTiles = function showTiles() {
+      this.isList = false;
+    };
 
     LibraryController.prototype.isActive = function isActive(route) {
       return route === this.$location.path();
@@ -59,6 +76,7 @@
 
     LibraryController.prototype.toggleModal = function () {
       this.showModal = !this.showModal;
+      console.log(this.itemsPerPage);
     };
 
     LibraryController.prototype.setItemsPerPage = function setItemsPerPage(num) {

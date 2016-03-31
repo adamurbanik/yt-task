@@ -18,7 +18,7 @@
       var model = {
         type: videoData.type,
         title: videoData.title,
-        date: new Date().toISOString(),
+        date: new Date().toISOString().slice(0,10),
         dateNumber: Date.now(),
         thumb: videoData.thumb,
         author: videoData.author,
