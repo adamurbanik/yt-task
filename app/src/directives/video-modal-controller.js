@@ -1,11 +1,12 @@
 (function () {
   'use strict';
 
-  var VideoModalController = (function () {
+  var VideoModalController = function () {
 
     VideoModalController.$inject = ['$scope'];
 
     function VideoModalController($scope) {
+      this.isSmall = true;
       this.$scope = $scope;
       this.startWatcher();
     }
@@ -30,7 +31,7 @@
     });
 
     return VideoModalController;
-  })();
+  }();
 
   angular
     .module('ytApp')

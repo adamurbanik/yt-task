@@ -3,12 +3,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">{{ title }}</h4>{{$sce(url).URL}}
+        <h4 class="modal-title">{{ vm.title }}</h4>{{$sce(url).URL}}
       </div>
       <div class="modal-body">
         <div ng-switch="type === 'youtube'">
-          <iframe class="iframe" ng-class="{'small': vm.isSmall}" ng-switch-when="true" id="playerVimeo" src="{{vm.url | unsafe}}"></iframe>
-          <iframe class="iframe" ng-class="{'small': vm.isSmall}" ng-switch-when="false" id="playerYT" src="{{vm.url | unsafe}}"></iframe>
+          <iframe class="iframe" ng-class="{'big': vm.isSmall}" ng-switch-when="true" id="playerVimeo" src="{{vm.url | unsafe}}"></iframe>
+          <iframe class="iframe" ng-class="{'big': vm.isSmall}" ng-switch-when="false" id="playerVimeo" src="{{vm.url | unsafe}}"></iframe>
         </div>
       </div>
     </div>

@@ -76,7 +76,6 @@
 
     LibraryController.prototype.toggleModal = function () {
       this.showModal = !this.showModal;
-      console.log(this.itemsPerPage);
     };
 
     LibraryController.prototype.setItemsPerPage = function setItemsPerPage(num) {

@@ -582,6 +582,10 @@ greyLine {
     width: 600px;
     text-align: left;
   }
+  .big {
+    width: 500px;
+    height: 500px;  
+  }
 
 
 }
