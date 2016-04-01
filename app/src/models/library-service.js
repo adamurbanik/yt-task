@@ -28,16 +28,16 @@
     };
 
     LibraryService.prototype.addItem = function addItem(videoData) {
-      this.storage.addItem(this.createModel(videoData));
+      return this.storage.addItem(this.createModel(videoData));
     };
 
     LibraryService.prototype.removeItem = function removeItem(videoID) {      
       var index = this.getIndexByVideoID(videoID);
-      this.storage.removeItem(index); 
+      return this.storage.removeItem(index); 
     };
 
     LibraryService.prototype.removeAll = function removeAll() {      
-      this.storage.removeAll();
+      return this.storage.removeAll();
     };
 
     LibraryService.prototype.checkIfExists = function checkIfExists(videoID) {
@@ -62,12 +62,12 @@
 
     LibraryService.prototype.addFavourite = function addFavourite(videoID) {
       var index = this.getIndexByVideoID(videoID);
-      this.storage.addFavourite(index);
+      return this.storage.addFavourite(index);
     };
 
     LibraryService.prototype.increaseViewingCount = function increaseViewingCount(videoID) {
       var index = this.getIndexByVideoID(videoID);
-      this.storage.increaseViewingCount(index);
+      return this.storage.increaseViewingCount(index);
     };
 
     return LibraryService;

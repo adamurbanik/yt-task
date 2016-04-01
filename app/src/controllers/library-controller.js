@@ -49,20 +49,19 @@
     };
 
     LibraryController.prototype.eraseLibrary = function eraseLibrary() {
-      this.libraryService.removeAll();
+      this.videos = this.libraryService.removeAll();
     };
 
     LibraryController.prototype.addFavourite = function addFavourite(videoID) {
-      this.libraryService.addFavourite(videoID);
+      this.videos = this.libraryService.addFavourite(videoID);
     };
 
     LibraryController.prototype.deleteMovie = function deleteMovie(videoID) {
-      this.libraryService.removeItem(videoID);
+      this.videos = this.libraryService.removeItem(videoID);
     };
 
     LibraryController.prototype.playVideo = function playVideo(movie) {
-      movie.viewingCount++;
-      this.libraryService.increaseViewingCount(movie.videoID);
+      this.videos = this.libraryService.increaseViewingCount(movie.videoID);
       this.toggleModal();
       this.url = movie.url;
       this.type = movie.type;
@@ -92,6 +91,7 @@
       var url = this.movieLink;
       var libraryService = this.libraryService;
       this.movieLink = "";
+      var self = this;
 
       this
         .videoService
@@ -99,7 +99,7 @@
         .then(onSucces, onFail);
 
       function onSucces(video) {
-        libraryService.addItem(video);
+        self.videos = libraryService.addItem(video);
       }
 
       function onFail(err) {
