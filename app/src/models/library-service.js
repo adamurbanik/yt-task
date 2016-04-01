@@ -3,15 +3,10 @@
 
   var LibraryService = function LibraryService() {
 
-    function LibraryService() {
-      this.videos = (function () {
-        try {
-          return JSON.parse(localStorage.getItem('videos')) || [];
-        }
-        catch (e) {
-          return [];
-        }
-      })();
+    LibraryService.$inject = ['storage'];
+    
+    function LibraryService(storage) {
+      this.storage = storage;
     }
 
     LibraryService.prototype.createModel = function (videoData) {
@@ -33,27 +28,21 @@
     };
 
     LibraryService.prototype.addItem = function addItem(videoData) {
-      this.videos.push(this.createModel(videoData));
-      this.sync();
+      this.storage.addItem(this.createModel(videoData));
     };
 
-    LibraryService.prototype.removeItem = function removeItem(videoID) {
+    LibraryService.prototype.removeItem = function removeItem(videoID) {      
       var index = this.getIndexByVideoID(videoID);
-      this.videos.splice(index, 1);
-      this.sync();
+      this.storage.removeItem(index); 
     };
 
-    LibraryService.prototype.removeAll = function removeAll() {
-      this.videos = [];
-      this.sync();
-    };
-
-    LibraryService.prototype.sync = function sync() {
-      localStorage.setItem('videos', angular.toJson(this.videos));
+    LibraryService.prototype.removeAll = function removeAll() {      
+      this.storage.removeAll();
     };
 
     LibraryService.prototype.checkIfExists = function checkIfExists(videoID) {
       return this
+        .storage
         .videos
         .map(function (video) {
           return video.videoID;
@@ -61,8 +50,9 @@
         .indexOf(videoID) !== -1;
     };
 
-    LibraryService.prototype.getIndexByVideoID = function getIndexByVideoID(videoID) {
+    LibraryService.prototype.getIndexByVideoID = function getIndexByVideoID(videoID) {            
       return this
+        .storage
         .videos
         .map(function (video) {
           return video.videoID;
@@ -72,15 +62,12 @@
 
     LibraryService.prototype.addFavourite = function addFavourite(videoID) {
       var index = this.getIndexByVideoID(videoID);
-      this.videos[index].favourite = true;
-      this.videos[index].favourCount++;
-      this.sync();
+      this.storage.addFavourite(index);
     };
 
     LibraryService.prototype.increaseViewingCount = function increaseViewingCount(videoID) {
       var index = this.getIndexByVideoID(videoID);
-      this.videos[index].viewingCount++;
-      this.sync();
+      this.storage.increaseViewingCount(index);
     };
 
     return LibraryService;

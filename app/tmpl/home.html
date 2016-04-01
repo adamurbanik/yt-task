@@ -65,7 +65,7 @@
   </div>
   <div class="elements">
     <div id="tiles" class="tiles " ng-hide="vm.isList">
-      <div class="tile" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.libraryService.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+      <div class="tile" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbTile">
           <img ng-src="{{movie.thumb}} " width="335px" alt="... ">
@@ -83,7 +83,7 @@
       </div>
     </div>
     <div id="list" class="list" ng-show="vm.isList ">
-      <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.libraryService.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+      <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbList">
           <img ng-src="{{movie.thumb}} " height="130px" " alt="... ">

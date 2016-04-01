@@ -6,8 +6,6 @@
     LibraryController.$inject = ['libraryService', '$location', 'videoService', 'config'];
 
     function LibraryController(libraryService, $location, videoService, config) {
-
-      this.vm = {};
       
       this.videoService = videoService;
       this.url = null;
@@ -24,11 +22,8 @@
       this.showModal = null;
       this.showFavourite = false;
       this.isList = false;
-
-      console.log(this.libraryService.videos);
+      this.videos = this.libraryService.storage.videos;    
       
-
-// some commments added
     }
     
     LibraryController.prototype.toggleFavourite = function toggleFavourite() {
@@ -48,7 +43,7 @@
     };
 
     LibraryController.prototype.getLibraryLength = function getLibraryLength(search) {
-      return this.libraryService.videos.filter(function (element) {
+      return this.videos.filter(function (element) {
         return search ? element.favourite === true : element;
       }).length;
     };
@@ -67,11 +62,10 @@
 
     LibraryController.prototype.playVideo = function playVideo(movie) {
       movie.viewingCount++;
-      this.libraryService.sync();
+      this.libraryService.increaseViewingCount(movie.videoID);
       this.toggleModal();
       this.url = movie.url;
       this.type = movie.type;
-      console.log(movie);
     };
 
     LibraryController.prototype.toggleModal = function () {
