@@ -4,6 +4,11 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.2",
+    "gulp-less": "^3.0.5"
   },
   "devDependencies": {},
   "scripts": {

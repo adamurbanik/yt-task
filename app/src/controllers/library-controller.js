@@ -6,7 +6,7 @@
     LibraryController.$inject = ['libraryService', '$location', 'videoService', 'config'];
 
     function LibraryController(libraryService, $location, videoService, config) {
-      
+
       this.videoService = videoService;
       this.url = null;
       this.type = null;
@@ -22,18 +22,18 @@
       this.showModal = null;
       this.showFavourite = false;
       this.isList = false;
-      this.videos = this.libraryService.storage.videos;    
-      
+      this.videos = this.libraryService.storage.videos;
+
     }
-    
+
     LibraryController.prototype.toggleFavourite = function toggleFavourite() {
       this.showFavourite = !this.showFavourite;
     };
-    
+
     LibraryController.prototype.showList = function toggleList() {
       this.isList = true;
     };
-    
+
     LibraryController.prototype.showTiles = function showTiles() {
       this.isList = false;
     };

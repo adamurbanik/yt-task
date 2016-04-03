@@ -29,11 +29,7 @@
       return url.match(this.validationPattern)[3];
     };
 
-    VimeoService.prototype.fetchVideo = function fetchVideo(url) {
-      if (!this.validate(url)) {
-        return this.$q.reject('invalid url');
-      }
-      
+    VimeoService.prototype.fetchVideo = function fetchVideo(url) {      
       return this.getData(this.parseHash(url));
     };
 
@@ -53,8 +49,8 @@
           };
         }, function () {
           return '$http gettting vimeo failed';
-        }); 
-      
+        });
+
     };
 
     return VimeoService;
@@ -66,11 +62,3 @@
     .service('vimeoService', VimeoService);
 
 })();
-
-
-
-
-      
-      
-
-

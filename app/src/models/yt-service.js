@@ -30,12 +30,7 @@
     };
 
     YTService.prototype.fetchVideo = function fetchVideo(url) {
-      if(!this.validate(url)) {
-        return this.$q.reject('invalid url');
-      }
-      
       return this.getData(this.parseHash(url));
-      
     };
 
     YTService.prototype.getData = function getData(videoID) {

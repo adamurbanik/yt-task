@@ -78,5 +78,4 @@ gulp.task('watch', function () {
   gulp.watch(['./app/**/*.css'], ['css']);
 });
 
-// gulp.task('default', ['html', 'fonts', 'css-vendor', 'js', 'bower', 'less', 'connect', 'watch']);
-gulp.task('default', ['html', 'fonts', 'css-vendor', 'js', 'bower', 'css', 'connect', 'watch']);
+gulp.task('default', ['html', 'images', 'fonts', 'css-vendor', 'js', 'bower', 'css', 'connect', 'watch']);
