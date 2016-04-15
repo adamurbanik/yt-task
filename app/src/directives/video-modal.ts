@@ -1,7 +1,12 @@
-(function () {
-  'use strict';
+(function() {
 
-  function AppVideoModal($sce) {
+  appVideoModalDirective.$inject = ['$sce'];
+
+  function link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+    ctrl.element = element;
+  }
+
+  function appVideoModalDirective($sce: ng.ISCEService) {
     return {
       templateUrl: 'tmpl/modal.html',
       restrict: 'E',
@@ -11,27 +16,17 @@
       bindToController: true,
       scope: {
         visible: '=',
-        url: '=',
+        url: '@',
         type: '=',
         title: '@'
       },
-      link: function postLink(scope, element, attrs, ctrl) {
-        ctrl.element = element;
-        
-      }
-    };
+      link
+    }
   }
 
   angular
     .module('ytApp')
-    .directive('appVideoModal', AppVideoModal)
-    .filter('unsafe', function ($sce) { return $sce.trustAsResourceUrl; });
-})();
+    .directive('appVideoModal', appVideoModalDirective)
+    .filter('unsafe', function($sce) { return $sce.trustAsResourceUrl; });
 
-
-
-
-
-
-
-
+})()

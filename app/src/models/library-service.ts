@@ -33,7 +33,7 @@ class Model {
 
 class LibraryService {
 
-  static $inject = ['storage'];
+  static $inject = ['appStorage'];
 
   constructor(public storage: AppStorage) {}
 

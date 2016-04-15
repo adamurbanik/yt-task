@@ -5,6 +5,8 @@ class YTService {
   validationPattern: RegExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   urlPattern: string = "https://www.youtube.com/watch?v=:id";
 
+
+
   constructor(public $q: ng.IQService) { }
 
   validate(url: string): boolean {

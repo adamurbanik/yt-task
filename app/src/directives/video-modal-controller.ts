@@ -1,41 +1,39 @@
-(function () {
-  'use strict';
+(function() {
 
-  var VideoModalController = function () {
+  class VideoModalController {
 
-    VideoModalController.$inject = ['$scope'];
+    private url: string;
+    private type: string;
+    private title: string;
+    private visible: boolean;
+    private isSmall: boolean = true;
+    private element: JQuery;
 
-    function VideoModalController($scope) {
-      this.isSmall = true;
-      this.$scope = $scope;
+    static $inject = ['$scope'];
+
+    constructor(public $scope: ng.IScope) {
       this.startWatcher();
     }
 
-    angular.extend(VideoModalController.prototype, {
-      startWatcher: function () {
-        var self = this;
-        this.$scope.$watch(
-          function () {
-            return self.visible;
-          },
-          function (isVisible) {
-            if (isVisible === null) {
-              return;
-            }
-            self.showModal();
-          });
-      },
-      showModal: function showModal() {
-        this.element.modal('show');
-      }
-    });
+    startWatcher() {
+      this.$scope.$watch(
+        () => this.visible,
+        (isVisible) => {
+          if (isVisible === null) {
+            return;
+          }
+          this.showModal();
+        }
+      );
+    }
 
-    return VideoModalController;
-  }();
+    showModal() {
+      this.element.modal('show');
+    }
+  }
 
   angular
     .module('ytApp')
     .controller('VideoModalController', VideoModalController);
+
 })();
-
-

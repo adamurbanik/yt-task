@@ -86,7 +86,7 @@
       <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbList">
-          <img ng-src="{{movie.thumb}} " height="130px" " alt="... ">
+          <img ng-src="{{movie.thumb}}" height="130px" alt="... ">
         </div>
         <div class="listContentLeft ">
           <div class="paragraph text ">{{movie.title}}</div>
@@ -108,10 +108,14 @@
     </div>
   </div>
   <div class="myPagination ">
-    <uib-pagination total-items="vm.getLibraryLength(vm.showFavourite) " ng-model="vm.currentPage " max-size="vm.maxSize
-          " class="pagination-sm " boundary-links="false " next-text=">" previous-text="
-          < "
-      rotate="false " num-pages="numPages " items-per-page="vm.itemsPerPage "></uib-pagination> 
+    <uib-pagination total-items="vm.getLibraryLength(vm.showFavourite) "
+          ng-model="vm.currentPage "
+          max-size="vm.maxSize"
+          class="pagination-sm "
+          boundary-links="false "
+          next-text="&gt;"
+          previous-text="&lt;"
+      rotate="false " num-pages="numPages " items-per-page="vm.itemsPerPage "></uib-pagination>
     </div>
     <div class="footer ">
       <div class="footerLine "></div>
@@ -119,7 +123,9 @@
       <div class="logo "></div>
     </div>
   </div>
-  <app-video-modal id="videoModal " title="Video " visible="vm.showModal " url="vm.url " type="vm.type ">
+  <app-video-modal
+    id="videoModal" title="Video"
+    visible="vm.showModal" url="{{vm.url}}" type="vm.type">
   </app-video-modal>
-  
+
 </div>
