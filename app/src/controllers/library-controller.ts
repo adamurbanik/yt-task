@@ -12,40 +12,41 @@ class LibraryController {
   sortDirection: boolean = true; // true = ASC, false = DESC
   showModal: boolean = null;
   showFavourite: boolean = false;
-  isList: boolean = false;
+  isList: boolean;
   videos: Model[] = this.libraryService.storage.videos;
 
 
   constructor(public libraryService: LibraryService,
     public $location: ng.ILocationService,
-    public videoService: VideoService) { }
+    public videoService: VideoService) {
+
+    this.isList = false;
+  }
+
 
 
   toggleFavourite(): void {
     this.showFavourite = !this.showFavourite;
   };
 
-  toggleList(): void {
-    this.isList = true;
-  };
-
-  showTiles(): void {
-    this.isList = false;
+  showList(): boolean {
+    return this.isList = true;
+  }
+  showTiles(): boolean {
+    return this.isList = false;
   };
 
   isActive(route): boolean {
     return route === this.$location.path();
   };
 
-  getLibraryLength(search: boolean): number {
-    return this.videos.filter((element: Model) => {
-      if (search) {
-        return element.favourite === true;
-      }
+  getLibraryLength(search: boolean) {
+    return this.videos.filter((element: Model): any => {
+      return (search) ? element.favourite === true : element;
     }).length;
   };
 
-  eraseLibrary():void {
+  eraseLibrary(): void {
     this.videos = this.libraryService.removeAll();
   };
 

@@ -82,7 +82,7 @@
         <div class="fa fa-trash-o" ng-click="vm.deleteMovie(movie.videoID) "></div>
       </div>
     </div>
-    <div id="list" class="list" ng-show="vm.isList ">
+    <div id="list" class="list" ng-show="vm.isList">
       <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbList">
