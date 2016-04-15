@@ -4,11 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "postinstall": "./node_modules/.bin/typings install && ./node_modules/.bin/bower install"
+    "postinstall": "./node_modules/.bin/typings install && ./node_modules/.bin/bower install",
+    "dev": "./node_modules/.bin/gulp"
   },
   "devDependencies": {
-    "typescript": "^1.8.10",
-    "typings": "^0.7.12",
     "bower": "^1.7.7",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
@@ -16,7 +15,10 @@
     "gulp-connect": "^3.2.2",
     "gulp-less": "^3.0.5",
     "gulp-tslint": "^4.3.5",
-    "gulp-typescript": "^2.13.0"
+    "gulp-typescript": "^2.13.0",
+    "tslint": "^3.7.4",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12"
   },
   "author": "Adam Urbanik",
   "license": "ISC"
