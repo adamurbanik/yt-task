@@ -4,17 +4,17 @@
 
   }
 
-  function htmlThumbDirective() {
+  function htmlElementDirective() {
     return {
       restrict: 'E',
       link
     }
   }
   
-  
+
   angular
     .module('ytApp')
-    .directive('htmlThumb', htmlThumbDirective);
+    .directive('htmlElement', htmlElementDirective);
 
 
 })()
