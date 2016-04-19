@@ -3,7 +3,7 @@
     <h2>DODAJ</h2>
     <h1>NOWY FILM DO BAZY</h1>
     <div class="rectangles">
-      <form role="form" name="pasteInput" ng-submit="vm.processInputForm()">
+      <form role="form" name="pasteInput" ng-submit="vm.processInputForm(vm.movieLink)">
         <div class="rectangleLeft">
           <input type="text" ng-model="vm.movieLink" name="movieLink" id="movieLink" placeholder="Podaj adres filmu lub jego identifikator"
           required>
@@ -17,7 +17,8 @@
       <div class="mark">Informacja</div>
     </div>
     <div class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
   </div>
 </div>
 <div class="pageBody">
@@ -50,22 +51,20 @@
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <ul class="dropdown-menu">
-        <li ng-click="vm.setItemsPerPage(2)"><a href="#">2</a></li>
-        <li ng-click="vm.setItemsPerPage(4)"><a href="#">4</a></li>
-        <li ng-click="vm.setItemsPerPage(8)"><a href="#">8</a></li>
-        <li ng-click="vm.setItemsPerPage(10)"><a href="#">10</a></li>
+        <li ng-repeat="page in vm.config.pages"
+            ng-click="vm.setItemsPerPage(page)"><a href="#">{{ ::page }}</a></li>
       </ul>
     </div>
-    <div class="btn-group sort">
-      <button type="button" class="btn btn-default" ng-click="vm.toggleSort()">
+    <app-sorting class="btn-group sort" direction="vm.sortDirection">
+      <button type="button" class="btn btn-default" ng-click="vm.sortDirection = !vm.sortDirection">
         <div class="topText contentMargin">Sortuj</div>
         <div class="bottomText contentMargin">Od najstarszych do najnowszych</div>
       </button>
-    </div>
+    </app-sorting>
   </div>
   <div class="elements">
-    <div id="tiles" class="tiles " ng-hide="vm.isList">
-      <div class="tile" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+    <div id="tiles" class="tiles " ng-if="!vm.isList">
+      <div class="tile" ng-hide="vm.showFavourite && !movie.favourite" ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbTile">
           <img ng-src="{{movie.thumb}} " width="335px" alt="... ">
@@ -82,8 +81,8 @@
         <div class="fa fa-trash-o" ng-click="vm.deleteMovie(movie.videoID) "></div>
       </div>
     </div>
-    <div id="list" class="list" ng-show="vm.isList">
-      <div class="listElement" ng-show="(vm.showFavourite) ? movie.favourite : true " ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
+    <div id="list" class="list" ng-if="vm.isList">
+      <div class="listElement" ng-hide="vm.showFavourite && !movie.favourite" ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
         <div class="thumbList">
           <img ng-src="{{movie.thumb}}" height="130px" alt="... ">

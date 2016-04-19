@@ -1,6 +1,14 @@
+// --save-dev -D
+// --save -S
+//
+// npm i -D gulp = npm install gulp --save-dev
+// npm i -S gulp = npm install gulp --save
+
+
+
 class LibraryController {
 
-  static $inject = ['libraryService', '$location', 'videoService'];
+  static $inject = ['libraryService', '$location', 'videoService', 'config'];
 
   url: string = null;
   type: string = null;
@@ -9,21 +17,18 @@ class LibraryController {
   itemsPerPage: number = 2;
   maxSize: number = 5; //Number of pager buttons to show
   movieLink: string = "";
-  sortDirection: boolean = true; // true = ASC, false = DESC
+  sortDirection: boolean = false; // true = ASC, false = DESC
   showModal: boolean = null;
   showFavourite: boolean = false;
-  isList: boolean;
+  isList: boolean = false;
   videos: Model[] = this.libraryService.storage.videos;
 
 
+
   constructor(public libraryService: LibraryService,
-    public $location: ng.ILocationService,
-    public videoService: VideoService) {
-
-    this.isList = false;
-  }
-
-
+              public $location: ng.ILocationService,
+              public videoService: VideoService,
+              public config: Config) { }
 
   toggleFavourite(): void {
     this.showFavourite = !this.showFavourite;
@@ -70,26 +75,16 @@ class LibraryController {
   };
 
   setItemsPerPage(num: number): void {
+    console.log(num);
     this.itemsPerPage = num;
     this.currentPage = 1; // reset to first page
   };
 
-  getSortClass() {
-    return {
-      'glyphicon-sort-by-attributes': this.sortDirection,
-      'glyphicon-sort-by-attributes-alt': !this.sortDirection
-    };
-  };
-
-  toggleSort(): void {
-    this.sortDirection = !this.sortDirection;
-  };
-
-  processInputForm(): void {
-    var url = this.movieLink;
-    var libraryService = this.libraryService;
+  processInputForm(movieLink: string): void {
+    let url = this.movieLink;
+    let libraryService = this.libraryService;
     this.movieLink = "";
-    var self = this;
+    let self = this;
 
     this
       .videoService
@@ -113,4 +108,4 @@ class LibraryController {
 
 angular
   .module('ytApp')
-  .controller('LibraryController', LibraryController)
+  .controller('LibraryController', LibraryController);

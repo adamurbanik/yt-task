@@ -265,14 +265,12 @@
   font-size: 11px;
   float: right;
 }
-.blueLine {
+.progress {
   float: left;
+  height: 3px;
+  width: 100%;
 }
 
-
-greyLine {
-  float: right;
-}
 .like {
   float: left;
   font-size: 10px;

@@ -13,19 +13,19 @@ class Model {
   url: string;
 
   constructor(videoData: any) {
-
-    this.type = videoData.type;
-    this.title = videoData.title;
-    this.date = new Date().toISOString().slice(0, 10);
-    this.dateNumber = Date.now();
-    this.thumb = videoData.thumb;
-    this.author = videoData.author;
-    this.favourite = false;
-    this.videoID = videoData.videoID;
-    this.favourCount = 0;
-    this.viewingCount = 0;
-    this.url = videoData.url;
-
+    Object.assign(this, {
+      type: videoData.type,
+      title: videoData.title,
+      date: new Date().toISOString().slice(0, 10),
+      dateNumber: Date.now(),
+      thumb: videoData.thumb,
+      author: videoData.author,
+      favourite: false,
+      videoID: videoData.videoID,
+      favourCount: 0,
+      viewingCount: 0,
+      url: videoData.url,
+    });
   }
 
 }
@@ -35,9 +35,9 @@ class LibraryService {
 
   static $inject = ['appStorage'];
 
-  constructor(public storage: AppStorage) {}
+  constructor(public storage: AppStorage) { }
 
-  createModel(videoData:any): Model {
+  createModel(videoData: any): Model {
     return new Model(videoData);
   }
 
@@ -46,7 +46,7 @@ class LibraryService {
   };
 
   removeItem(videoID: string): Model[] {
-    var index = this.getIndexByVideoID(videoID);
+    let index = this.getIndexByVideoID(videoID);
     return this.storage.removeItem(index);
   }
 
@@ -59,8 +59,8 @@ class LibraryService {
       .storage
       .videos
       .map(function(video) {
-      return video.videoID;
-    })
+        return video.videoID;
+      })
       .indexOf(videoID) !== -1;
   };
 
@@ -69,23 +69,23 @@ class LibraryService {
       .storage
       .videos
       .map(function(video) {
-      return video.videoID;
-    })
+        return video.videoID;
+      })
       .indexOf(videoID);
   };
 
   addFavourite(videoID: string): Model[] {
-    var index = this.getIndexByVideoID(videoID);
+    let index = this.getIndexByVideoID(videoID);
     return this.storage.addFavourite(index);
   };
 
   increaseViewingCount(videoID: string): Model[] {
-    var index = this.getIndexByVideoID(videoID);
+    let index = this.getIndexByVideoID(videoID);
     return this.storage.increaseViewingCount(index);
   };
 
 }
 
-  angular
-    .module('ytApp')
-    .service('libraryService', LibraryService);
+angular
+  .module('ytApp')
+  .service('libraryService', LibraryService);

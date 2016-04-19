@@ -2,8 +2,8 @@
 
   appVideoModalDirective.$inject = ['$sce'];
 
-  function link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
-    ctrl.element = element;
+  function link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: VideoModalController) {
+    ctrl.setElement(element);
   }
 
   function appVideoModalDirective($sce: ng.ISCEService) {

@@ -2,18 +2,19 @@ class configureRoute {
 
   static $inject = ['$stateProvider', '$urlRouterProvider'];
 
-  constructor(public $stateProvider: angular.ui.IStateProvider, public $urlRouterProvider: angular.ui.IUrlRouterProvider) {
+  constructor(public $stateProvider: angular.ui.IStateProvider,
+              public $urlRouterProvider: angular.ui.IUrlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/");
+              $urlRouterProvider.otherwise("/");
 
-    $stateProvider
+              $stateProvider
 
-      .state('root', {
-      url: "/",
-      templateUrl: 'tmpl/home.html',
-      controller: 'LibraryController',
-      controllerAs: 'vm'
-    });
+                .state('root', {
+                url: "/",
+                templateUrl: 'tmpl/home.html',
+                controller: 'LibraryController',
+                controllerAs: 'vm'
+              });
 
 
   }

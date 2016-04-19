@@ -1,23 +1,4 @@
-class Config {
-
-  thumbs: String;
-  pagination: Number;
-  thumbWidth: Number;
-  thumbHeight: Number;
-  videoWidth: Number;
-  videoHeight: Number;
-
-  constructor() {
-    this.thumbs = "thumbs";
-    this.pagination = 5;
-    this.thumbWidth = 150;
-    this.thumbHeight = 150;
-    this.videoWidth = 480;
-    this.videoHeight = 385;
-  }
-}
-
-interface IVideo {
+interface IVideoModel {
   type: string;
   videoID: string;
   title: string;
@@ -30,9 +11,8 @@ interface IVideo {
 interface IVideoService {
   validate(url: string): boolean;
   parseHash(url: string): string;
-  fetchVideo(url: string): ng.IPromise<IVideo>;
-  getData(videoID: string): ng.IPromise<IVideo>;
-
+  fetchVideo(url: string): ng.IPromise<IVideoModel>;
+  getData(videoID: string): ng.IPromise<IVideoModel>;
 }
 
 
@@ -50,8 +30,8 @@ class VideoService {
   }
 
   init(url: string): ng.IPromise<IVideoService> {
-    for (var i = 0; i < this.services.length; i++) {
-      var service = this.services[i];
+    for (let i = 0; i < this.services.length; i++) {
+      let service = this.services[i];
       if (service.validate(url)) {
         return this.$q.resolve(service);
       }
@@ -63,8 +43,8 @@ class VideoService {
     return this
       .init(url)
       .then(function(service) {
-      return service.fetchVideo(url);
-    });
+        return service.fetchVideo(url);
+      });
   };
 
 }
