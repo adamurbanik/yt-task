@@ -46,30 +46,21 @@ class VimeoService {
         method: 'GET',
         url: this.urlPattern.replace(':id', videoID)
       })
-      .then((object: any) => {
-        return {
-          type: 'vimeo',
-          videoID: object.data[0].id,
-          title: object.data[0].title,
-          thumb: object.data[0].thumbnail_medium,
-          author: object.data[0].user_name,
-          url: "http://player.vimeo.com/video/" + videoID + "?api=1&player_id=playerVimeo"
-        }
+      .then((data: IVimeoDataSource) => {
+        let videoModel = <IVimeoDataModel>{};
+
+        const source = data.data[0];
+
+        videoModel.type = 'vimeo';
+        videoModel.videoID = source.id;
+        videoModel.title = source.title;
+        videoModel.thumb = source.thumbnail_medium;
+        videoModel.author = source.user_name;
+        // videoModel.url = `"http://player.vimeo.com/video/${videoID}?api=1&player_id=playerVimeo"`;
+        videoModel.url = "http://player.vimeo.com/video/" + videoID + "?api=1&player_id=playerVimeo"
+
+        return videoModel;
       })
-      // .then((data: IVimeoDataSource) => {
-      //   let videoModel = <IVimeoDataModel>{};
-
-      //   const source = data.data[0];
-
-      //   videoModel.type = 'vimeo';
-      //   videoModel.videoID = source.id;
-      //   videoModel.title = source.title;
-      //   videoModel.thumb = source.thumbnail_medium;
-      //   videoModel.author = source.user_name;
-      //   videoModel.url = `"http://player.vimeo.com/video/${videoID}?api=1&player_id=playerVimeo"`;
-
-      //   return videoModel;
-      // })
       .catch(() => {
         return {
           error: '$http gettting vimeo failed'
