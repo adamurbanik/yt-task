@@ -56,8 +56,7 @@ class VimeoService {
         videoModel.title = source.title;
         videoModel.thumb = source.thumbnail_medium;
         videoModel.author = source.user_name;
-        // videoModel.url = `"http://player.vimeo.com/video/${videoID}?api=1&player_id=playerVimeo"`;
-        videoModel.url = "http://player.vimeo.com/video/" + videoID + "?api=1&player_id=playerVimeo"
+        videoModel.url = `http://player.vimeo.com/video/${videoID}?api=1&player_id=playerVimeo`;
 
         return videoModel;
       })
