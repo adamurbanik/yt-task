@@ -1,8 +1,10 @@
 (function() {
 
-  function link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: ElementListController) {}
+  function link(scope, element, attributes) {
 
-  function htmlListElementDirective() {
+  }
+
+  function htmlElementDirective() {
     return {
       templateUrl: 'tmpl/element-list.html',
       restrict: 'E',
@@ -15,11 +17,11 @@
       link
     }
   }
-
+  
 
   angular
     .module('ytApp')
-    .directive('htmlListElement', htmlListElementDirective);
+    .directive('htmlListElement', htmlElementDirective);
 
 
-})();
+})()
