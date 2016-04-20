@@ -8,7 +8,9 @@
           <input type="text" ng-model="vm.movieLink" name="movieLink" id="movieLink" placeholder="Podaj adres filmu lub jego identifikator"
           required>
         </div>
-        <div class="rectangleRight"><button ng-disabled="!(pasteInput.movieLink.$valid)" type="submit" class="btn btn-default">Dodaj do bazy</button></div>
+        <div class="rectangleRight">
+          <button ng-disabled="!(pasteInput.movieLink.$valid)" type="submit" class="btn btn-default">Dodaj do bazy</button>
+        </div>
         <!--<button ng-disabled="!(pasteInput.movieLink.$valid)" type="submit" class="btn btn-default rectangleRight">Submit</button>-->
       </form>
     </div>
@@ -33,7 +35,7 @@
     </div>
     <div id="btnList" class="viewList">
       <button type="button" class="btn btn-default" ng-click="vm.showList()">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true" ></span>
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
       </button>
     </div>
     <div id="btnTiles" class="viewTiles ">
@@ -51,8 +53,7 @@
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <ul class="dropdown-menu">
-        <li ng-repeat="page in vm.config.pages"
-            ng-click="vm.setItemsPerPage(page)"><a href="#">{{ ::page }}</a></li>
+        <li ng-repeat="page in vm.config.pages" ng-click="vm.setItemsPerPage(page)"><a href="#">{{ ::page }}</a></li>
       </ul>
     </div>
     <app-sorting class="btn-group sort" direction="vm.sortDirection">
@@ -66,17 +67,10 @@
     <div id="tiles" class="tiles " ng-if="!vm.isList">
       <div class="tile" ng-hide="vm.showFavourite && !movie.favourite" ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
-        <div class="thumbTile">
-          <img ng-src="{{movie.thumb}} " width="335px" alt="... ">
-        </div>
-        <div class="paragraph text">{{movie.title}}</div>
-        <div class="date text">Data dodania: {{movie.date}}</div>
-        <div class="numberOfDisplays text">Wyświetleń: {{movie.viewingCount}}</div>
-        <div class="blueLine"><img src="images/niebieska_kreska.png" /></div>
-        <div class="greyLine"><img src="images/szara_kreska.png" /></div>
-        <div class="like"><img src=images/ikona_lubie.png /> {{movie.favourCount}}</div>
-        <div class="dislike"><img src=images/ikona_nielubie.png />{{movie.dislikeCount}}</div>
-        <br />
+        <html-tile-element id="htmlTileElement"" movie="movie">
+        </html-tile-element>
+        <div class="fa fa-heart-o white-fill" ng-click="vm.addFavourite(movie.videoID) "></div>
+        <div class="fa fa-thumbs-down" ng-click="vm.dislikeMovie(movie.videoID)"></div>
         <div type="button " class="buttonTile btn btn-primary " ng-click="vm.playVideo(movie) ">Oglądaj</div>
         <div class="fa fa-trash-o" ng-click="vm.deleteMovie(movie.videoID) "></div>
       </div>
@@ -84,22 +78,11 @@
     <div id="list" class="list" ng-if="vm.isList">
       <div class="listElement" ng-hide="vm.showFavourite && !movie.favourite" ng-repeat="movie in vm.videos.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))
   | orderBy: 'dateNumber':vm.sortDirection ">
-        <div class="thumbList">
-          <img ng-src="{{movie.thumb}}" height="130px" alt="... ">
-        </div>
-        <div class="listContentLeft ">
-          <div class="paragraph text ">{{movie.title}}</div>
-          <div class="date text ">Data dodania: {{movie.date}}</div>
-          <div class="numberOfDisplaysList text ">Wyświetleń: {{movie.viewingCount}}</div>
-          <br />
-          <div class="blueLineList "><img src="images/niebieska_kreska.png " /></div>
-          <div class="greyLineList "><img src="images/szara_kreska.png " /></div>
-          <br />
-          <div class="likeList "><img src=images/ikona_lubie.png /> {{movie.favourCount}}</div>
-          <div class="dislikeList "><img src=images/ikona_nielubie.png /> {{movie.dislikeCount}}</div>
-        </div>
+        <html-list-element id="htmlListElement" movie="movie">
+        </html-list-element>
         <div class="listContentRight ">
           <div class="fa fa-heart-o " ng-click="vm.addFavourite(movie.videoID) "></div>
+          <div class="fa fa-thumbs-down thumb" ng-click="vm.dislikeMovie(movie.videoID)"></div>
           <div type="button " class="buttonList btn btn-primary " ng-click="vm.playVideo(movie) ">Oglądaj</div>
           <div class="fa fa-trash-o " ng-click="vm.deleteMovie(movie.videoID) "></div>
         </div>
@@ -107,24 +90,16 @@
     </div>
   </div>
   <div class="myPagination ">
-    <uib-pagination total-items="vm.getLibraryLength(vm.showFavourite) "
-          ng-model="vm.currentPage "
-          max-size="vm.maxSize"
-          class="pagination-sm "
-          boundary-links="false "
-          next-text="&gt;"
-          previous-text="&lt;"
-      rotate="false " num-pages="numPages " items-per-page="vm.itemsPerPage "></uib-pagination>
-    </div>
-    <div class="footer ">
-      <div class="footerLine "></div>
-      <div class="clearLibrary ">WYCZYŚĆ BAZĘ FILMOW • WGRAJ BAZĘ TESTOWĄ</div>
-      <div class="logo "></div>
-    </div>
+    <uib-pagination total-items="vm.getLibraryLength(vm.showFavourite) " ng-model="vm.currentPage " max-size="vm.maxSize" class="pagination-sm "
+    boundary-links="false " next-text="&gt;" previous-text="&lt;" rotate="false " num-pages="numPages " items-per-page="vm.itemsPerPage "></uib-pagination>
   </div>
-  <app-video-modal
-    id="videoModal" title="Video"
-    visible="vm.showModal" url="{{vm.url}}" type="vm.type">
-  </app-video-modal>
+  <div class="footer ">
+    <div class="footerLine "></div>
+    <div class="clearLibrary ">WYCZYŚĆ BAZĘ FILMOW • WGRAJ BAZĘ TESTOWĄ</div>
+    <div class="logo "></div>
+  </div>
+</div>
+<app-video-modal id="videoModal" title="Video" visible="vm.showModal" url="{{vm.url}}" type="vm.type">
+</app-video-modal>
 
 </div>

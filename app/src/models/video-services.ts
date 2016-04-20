@@ -45,7 +45,7 @@ class VideoService {
       .then(function(service) {
         return service.fetchVideo(url);
       });
-  };
+  }
 
 }
 

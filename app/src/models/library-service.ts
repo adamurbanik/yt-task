@@ -9,23 +9,23 @@ class Model {
   favourite: boolean;
   videoID: string;
   favourCount: number;
+  dislikeCount: number;
   viewingCount: number;
   url: string;
 
   constructor(videoData: any) {
-    Object.assign(this, {
-      type: videoData.type,
-      title: videoData.title,
-      date: new Date().toISOString().slice(0, 10),
-      dateNumber: Date.now(),
-      thumb: videoData.thumb,
-      author: videoData.author,
-      favourite: false,
-      videoID: videoData.videoID,
-      favourCount: 0,
-      viewingCount: 0,
-      url: videoData.url,
-    });
+    this.type = videoData.type;
+    this.title = videoData.title;
+    this.date = new Date().toISOString().slice(0, 10);
+    this.dateNumber = Date.now();
+    this.thumb = videoData.thumb;
+    this.author = videoData.author;
+    this.favourite = false;
+    this.videoID = videoData.videoID;
+    this.favourCount = 0;
+    this.dislikeCount = 0;
+    this.viewingCount = 0;
+    this.url = videoData.url;
   }
 
 }
@@ -43,7 +43,7 @@ class LibraryService {
 
   addItem(videoData: any): Model[] {
     return this.storage.addItem(this.createModel(videoData));
-  };
+  }
 
   removeItem(videoID: string): Model[] {
     let index = this.getIndexByVideoID(videoID);
@@ -52,7 +52,7 @@ class LibraryService {
 
   removeAll(): Model[] {
     return this.storage.removeAll();
-  };
+  }
 
   checkIfExists(videoID: string): boolean {
     return this
@@ -62,7 +62,7 @@ class LibraryService {
         return video.videoID;
       })
       .indexOf(videoID) !== -1;
-  };
+  }
 
   getIndexByVideoID(videoID: string): number {
     return this
@@ -72,17 +72,22 @@ class LibraryService {
         return video.videoID;
       })
       .indexOf(videoID);
-  };
+  }
 
   addFavourite(videoID: string): Model[] {
     let index = this.getIndexByVideoID(videoID);
     return this.storage.addFavourite(index);
-  };
+  }
+  
+  dislikeMovie(videoID: string): Model[] {
+    let index = this.getIndexByVideoID(videoID);
+    return this.storage.dislikeMovie(index);
+  }
 
   increaseViewingCount(videoID: string): Model[] {
     let index = this.getIndexByVideoID(videoID);
     return this.storage.increaseViewingCount(index);
-  };
+  }
 
 }
 

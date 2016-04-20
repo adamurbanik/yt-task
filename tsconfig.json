@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es5",
         "module": "commonjs",
         "sourceMap": false
     },
@@ -22,7 +22,9 @@
         "app/src/app.ts",
         "app/src/bootstrap.ts",
         "app/src/controllers/library-controller.ts",
-        "app/src/directives/html-thumb.ts",
+        "app/src/directives/element-list-controller.ts",
+        "app/src/directives/element-list.ts",
+        "app/src/directives/element-tile.ts",
         "app/src/directives/sorting.ts",
         "app/src/directives/video-modal-controller.ts",
         "app/src/directives/video-modal.ts",

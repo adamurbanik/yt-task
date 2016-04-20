@@ -24,11 +24,11 @@ class YTService {
       return null;
     }
     return url.match(this.validationPattern)[2];
-  };
+  }
 
   fetchVideo(url: string): ng.IPromise<IYTDataModel> {
     return this.getData(this.parseHash(url));
-  };
+  }
 
   getData(videoID: string): ng.IPromise<IYTDataModel> {
     return this

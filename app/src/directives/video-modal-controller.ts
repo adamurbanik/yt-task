@@ -18,7 +18,7 @@ class VideoModalController {
     }
     );
   }
-   
+
   setElement (element: JQuery) {
     this.element = element;
   }

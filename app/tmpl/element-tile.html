@@ -1,0 +1,9 @@
+<div class="thumbTile">
+  <img ng-src="{{vm.movie.thumb}} " width="335px" alt="... ">
+</div>
+<div class="paragraph text">{{vm.movie.title}}</div>
+<div class="date text">Data dodania: {{vm.movie.date}}</div>
+<div class="numberOfDisplays text">Wyświetleń: {{vm.movie.viewingCount}}</div>
+<div class = "gradientPercentage" style="height: 3px; background: linear-gradient(to right, rgba(0,100,197,1) {{vm.gradientPercentage}}%, rgba(220,220,220,1) {{vm.gradientPercentage}}%);"></div>
+<div class="like"><img src=images/ikona_lubie.png /> {{vm.movie.favourCount}}</div>
+<div class="dislike"><img src=images/ikona_nielubie.png /> {{vm.movie.dislikeCount}}</div>

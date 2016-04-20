@@ -7,11 +7,11 @@ class LocalStorage {
     catch (e) {
       return [];
     }
-  };
+  }
 
   updateStorage(videos) {
     localStorage.setItem('videos', angular.toJson(videos));
-  };
+  }
 
 }
 
